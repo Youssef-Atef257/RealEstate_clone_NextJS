@@ -16,7 +16,7 @@ const SubscriptionPage = async () => {
         {subscriptionPlans.map((item) => (
           <Plan key={nanoid()}  plan={item} />
         ))}
-        console.log(subscriptionPlans,'from subscription')
+       
       </div>
     </div>
   );
@@ -31,8 +31,8 @@ const Plan = ({ plan }: { plan: SubscriptionPlan }) => {
       </h1>
       <hr />
       <div className="flex flex-col gap-1 text-center">
-        {plan.features.split(",").map((feature) => (
-          <p className="text-slate-500 text-sm">{feature.trim()}</p>
+        {plan.features.split(",").map((feature, index) => (
+          <p key={index} className="text-slate-500 text-sm">{feature.trim()}</p>
         ))}
       </div>
       <PurchasePlan plan={plan} />
