@@ -14,8 +14,9 @@ const SubscriptionPage = async () => {
       <PageTitle title="Subscription Plans" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 p-4">
         {subscriptionPlans.map((item) => (
-          <Plan  key={nanoid()}  plan={item} />
+          <Plan key={nanoid()}  plan={item} />
         ))}
+        console.log(subscriptionPlans,'from subscription')
       </div>
     </div>
   );
