@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { SubscriptionPlan } from "@prisma/client";
 import React from "react";
 import PurchasePlan from "./_components/PurchasePlan";
+import { nanoid } from 'nanoid';
 
 const SubscriptionPage = async () => {
   const subscriptionPlansPromise = prisma.subscriptionPlan.findMany();
@@ -13,7 +14,7 @@ const SubscriptionPage = async () => {
       <PageTitle title="Subscription Plans" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 p-4">
         {subscriptionPlans.map((item) => (
-          <Plan plan={item} />
+          <Plan  key={nanoid()}  plan={item} />
         ))}
       </div>
     </div>

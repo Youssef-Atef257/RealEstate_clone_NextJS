@@ -1,6 +1,6 @@
 "use client";
-const ClientComponent = () => {
-  return <ServerComponent />;
+const HelloComponent = () => {
+  return <div>Hello</div>;
 };
 
-export default ClientComponent;
+export default HelloComponent;

@@ -1,5 +1,6 @@
 "use client";
 import { TrashIcon } from "@heroicons/react/16/solid";
+import { nanoid } from 'nanoid';
 import { EyeIcon, PencilIcon } from "@heroicons/react/16/solid";
 import {
   Pagination,
@@ -41,7 +42,7 @@ const PropertiesTable = ({ properties, totalPages, currentPage }: Props) => {
         </TableHeader>
         <TableBody>
           {properties.map((item) => (
-            <TableRow>
+            <TableRow key={nanoid()}>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.price}</TableCell>
               <TableCell>{item.type.value}</TableCell>
