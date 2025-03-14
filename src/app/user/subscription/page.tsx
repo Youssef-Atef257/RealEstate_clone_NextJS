@@ -11,10 +11,11 @@ const SubscriptionPage = async () => {
 
   return (
     <div>
-      <PageTitle title="Subscription Plans" />
+      <PageTitle title={"Subscription Plans"} />
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 p-4">
         {subscriptionPlans.map((item) => (
-          <Plan key={nanoid()}  plan={item} />
+          <Plan key={item.id}  plan={item} />
         ))}
        
       </div>
@@ -32,7 +33,7 @@ const Plan = ({ plan }: { plan: SubscriptionPlan }) => {
       <hr />
       <div className="flex flex-col gap-1 text-center">
         {plan.features.split(",").map((feature, index) => (
-          <p key={index} className="text-slate-500 text-sm">{feature.trim()}</p>
+          <p key={feature.trim()} className="text-slate-500 text-sm">{feature.trim()}</p>
         ))}
       </div>
       <PurchasePlan plan={plan} />
