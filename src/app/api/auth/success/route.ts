@@ -6,25 +6,30 @@ export async function GET() {
   const { getUser } = await getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user === null || !user.id)
-    throw new Error("Something went wrong with authentication" + user);
+  if (!user?.id) {
+    return NextResponse.redirect("http://localhost:3000/auth/login");
+  }
 
-  const dbUser = await prisma.user.findUnique({
-    where: {
-      id: user.id,
-    },
-  });
-
-  if (!dbUser) {
-    await prisma.user.create({
-      data: {
-        id: user.id,
-        firstName: user.given_name ?? "",
-        lastName: user.family_name ?? "",
-        email: user.email ?? "",
-      },
+  try {
+    const dbUser = await prisma.user.findUnique({
+      where: { id: user.id },
     });
 
+    if (!dbUser) {
+      await prisma.user.create({
+        data: {
+          id: user.id,
+          firstName: user.given_name ?? "",
+          lastName: user.family_name ?? "",
+          email: user.email ?? "",
+        },
+      });
+    }
+
     return NextResponse.redirect("http://localhost:3000/");
+    
+  } catch (error) {
+    console.error("Authentication error:", error);
+    return NextResponse.redirect("http://localhost:3000/auth/login?error=1");
   }
 }

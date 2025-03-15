@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { faker } from "@faker-js/faker";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   console.log("seeding started!");
@@ -141,4 +142,7 @@ export async function GET() {
   console.log("seeding finished!");
 
   console.log("migration ended...");
+  return NextResponse.json({ success: true, message: "Seeding completed" });
 }
+
+
